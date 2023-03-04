@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% include 'store/baselinks.html'%}
+    <link rel="stylesheet" href="{% static 'css/products.css'%}">
+    <style>
+        ul li{
+            margin : 5px;
+            padding : 10px 15px;
+            border : 1px solid coral;
+            color : coral;
+            cursor : pointer;
+            font-size : 18px;
+        }
+        li a{
+            color: coral;
+            text-decoration: none;
+        }
+        .active{
+            background-color: coral;
+            color: white;
+        }
+        .disabled{
+            color : #ccc;
+            border : 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="row">
+            {% include 'store/navigation.html'%}
+        </div>
+    </header>
+    <section class="search-box">
+        <div class="row" id="--row">
+            <form class="search-form" method="get" style="width: 100%; height : 40px;
+            display : flex; align-items : center; gap : 10px">
+                <input type="text" name="form-data" placeholder="search for products" style="
+                width : 60%; height:100%; border : 1px solid #ccc; outline : none; padding : 15px;
+                border-radius: 5px;">
+                <input type="submit" value="search" style="height : 100%; background-color: #FC2D00;
+                color : white; font-size: 14px; outline: none; border : 1px solid #FC2D00;
+                cursor : pointer; padding : 5px 10px; border-radius: 5px;">
+            </form>
+        </div>
+    </section>
+    <section class="all-products">
+        <div class="row">
+            <div class="all-products-title">
+                <h2 class="title-header">
+                    All Products
+                </h2>
+                <div class="Line all"></div>
+            </div>
+            <div class="all-products-container">
+                {% for product in products%}
+                    <div class="card adjust">
+                        <div class="product-image adjust">
+                            <img src={{product.product_image.url}} alt="" style="width : 100%; height : 100%">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">{{product.title}}</h3>
+                            <small class="price">${{product.price}}</small>
+                            <div class="small-btn-container">
+                                <button class="btn solid small js" data-id = {{product.id}} data-action="add">Cart</button>
+                                <a  href="{% url 'Product-details' product.id %}" class="btn line small">View</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            {% if products.has_other_pages %}
+                <ul class="pagination" style="margin-top : 40px;
+                display : flex; list-style : none">
+                    {% if products.has_previous %}
+                        <li><a href="?page={{ products.previous_page_number }}">&laquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><span>&laquo;</span></li>
+                    {% endif %}
+                    {% for i in products.paginator.page_range %}
+                        {% if products.number == i %}
+                            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                        {% else %}
+                            <li><a href="?page={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if products.has_next %}
+                        <li><a href="?page={{ products.next_page_number }}">&raquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><span>&raquo;</span></li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+        </div>
+    </section>
+    {% include 'store/footer.html'%}
+</body>
+</html>

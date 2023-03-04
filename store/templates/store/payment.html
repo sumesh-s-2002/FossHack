@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% include 'store/baselinks.html'%}
+    <link rel="stylesheet" href="{% static 'css/register.css'%}">
+</head>
+<body style="display : flex; flex-direction : column; flex-grow : 1">
+    <header>
+        <div class="row">
+            {% include 'store/navigation.html'%}
+        </div>
+    </header>
+    <div class="row" style="height : 55vh">
+        <div style="width : 100%; padding: 30px 10px; border : 1px solid #ccc; box-shadow: 5px 5px 5px #ccc; border-radius: 5px;
+        display : flex; flex-direction: column; gap: 10px; align-items: center;">
+            <p style="margin-bottom: 10px; font-size: 20px; font-weight: 500;">compleate the payment and receive the order in 10 days</p>
+            <button id="pay" class="btn solid" style="border: none; cursor: pointer;">Pay now</button>
+        </div>
+    </div>
+    {% include 'store/footer.html'%}
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+    var options = {
+      key: "{{ key }}",     
+      amount: "{{ amount }}",
+      currency: "INR",
+      name: "Xstores",
+       
+      // Pass the `id` obtained in the response of Step 1
+      order_id: "{{ id }}",
+      callback_url: "{{ callback_url }}",
+      image : "media/empty.png",
+      name : "{{request.user.first_name}}",
+      description : "test Transaction",
+      prefill : {
+          email : "{{request.user.email}}",
+          contact : "{{customer.phone}}",
+      }
+    };
+     
+    // initialise razorpay with the options.
+    var rzp1 = new Razorpay(options);
+     
+    // add event listener to the payment button.
+    document.getElementById("pay").onclick = function (e) {
+      rzp1.open();
+      e.preventDefault();
+    };
+  </script>
+</body>
+</html>
+ 

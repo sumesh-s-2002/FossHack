@@ -1,0 +1,174 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    {% include 'store/baselinks.html'%}
+</head>
+<body>
+    <div class="landing-container">
+        <div class="row">
+            {% include 'store/navigation.html'%}
+            <div class="main-container">
+                <div class="main-title">
+                    <div class="main-title-container">
+                        <h1 class="title">Get The Best Product For Your Choice!</h1>
+                        <p class= "quotes">Ecommerce isn’t the cherry on the cake,<br>it’s the new cake</p>
+                        <div class="btn-container">
+                            {% if request.user.is_authenticated %}
+                                <a href="{%url 'LogOut-page'%}" class = "btn solid">LogOut</a>
+                            {% else %}
+                                <a href="{%url 'Login-page'%}" class = "btn solid">Login</a>
+                            {% endif %}
+                            <a href="{%url 'Register-page'%}" class = "btn solid">SignUp</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="image-wrapper">
+                    <!---contain image----->
+                    <img src="{% static 'images/facingimage.png'%}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-------------landing page end------------------>
+    <!-------featutured Product section---->
+    <section class="featured-product">
+        <div class="row">
+            <div class="featured-product-container">
+                <button class = "scroll-right">&rsaquo;</button>
+                <button class = "scroll-left">&lsaquo;</button>
+                <h2 class="title-header">
+                    {{title1}}
+                </h2>
+                <div class="Line"></div>
+                <div class="product-container">
+                    {% for product in featured%}
+                        <div class="card">
+                            <div class="product-image">
+                                <img src={{product.product_image.url}} alt="" style="width : 100%; height : 100%">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">{{product.title}}</h3>
+                                <small class="price">${{product.price}}</small>
+                                <div class="small-btn-container">
+                                    <button class="btn solid small js" data-id={{product.id}} data-action="add">Cart</button>
+                                    <a  href="{% url 'Product-details' product.id %}"  class="btn line small">View</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--------features product section end-->
+    <!---------lastest product section-->
+    <section class="latest-product">
+        <div class="row">
+            <div class="latest-product-container">
+                <button class = "scroll-right">&rsaquo;</button>
+                <button class = "scroll-left">&lsaquo;</button>
+                <h2 class="title-header">
+                    {{title2}}
+                </h2>
+                <div class="Line"></div>
+                <div class="product-container">
+                    {% for product in latest%}
+                        <div class="card">
+                            <div class="product-image">
+                                <img src={{product.product_image.url}} alt="" style="width : 100%; height : 100%">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">{{product.title}}</h3>
+                                <small class="price">${{product.price}}</small>
+                                <div class="small-btn-container">
+                                    <button class="btn solid small js" data-id={{product.id}} data-action="add">Cart</button>
+                                    <a  href="{% url 'Product-details' product.id %}" class="btn line small">View</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <!----------latest product section end-->
+    <!-----------Exclusive Product---------->
+    <section class="exclusive-product">
+        <div class="row">
+            <div class="exclusive-product-container">
+                <div class="exclusive-image-container">
+                    <!------holds the image-->
+                    <img src="{% static 'images/exclusive.png'%}" class="exclusive-image" alt="exclusive image">
+                </div>
+                <div class="exclusive-product-info">
+                    <p class="exclusive-info">Exclusively Available On Xstore</p>
+                    <h2 class="exclusive-product-title">Smart Band 4 </h2>
+                    <p class="exclusive-product-description">The MI  Smart Band $ Features a 39.9% longer (than MI Band 3) AMOLED  color
+                        full-touch display with adjustable brightness so everything is clear as can be</p>
+                    <button class="btn solid large">Add To Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-----------Exclusive Product end---------->
+    <!------------testimonials page------------->
+    <section class="testimonial">
+        <div class="row">
+            <div class="testimonial-container">
+                <div class="testimonial-card">
+                    <i class="fa-solid fa-quote-left"></i>
+                    <p class="review">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, voluptatibus quo repellat ad accusantium neque.</p>
+                    <div class="icon-container">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <div class="profile-container" style="overflow : hidden">
+                        <img src="{%static 'images/sineesh.jpeg'%}" alt="" style="width : 100%; height : 100%">
+                    </div>
+                    <small class="name">Sineesh</small>
+                </div>
+                <div class="testimonial-card">
+                    <i class="fa-solid fa-quote-left"></i>
+                    <p class="review">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, voluptatibus quo repellat ad accusantium neque.</p>
+                    <div class="icon-container">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <div class="profile-container" style="overflow : hidden">
+                        <img src="{%static 'images/roshan.jpeg'%}" alt="" style="width : 100%; height : 100%">
+                    </div>
+                    <small class="name">Roshan</small>
+                </div>
+                <div class="testimonial-card">
+                    <i class="fa-solid fa-quote-left"></i>
+                    <p class="review">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, voluptatibus quo repellat ad accusantium neque.</p>
+                    <div class="icon-container">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <div class="profile-container" style="overflow: hidden;">
+                        <img src="{%static 'images/koya.jpeg'%}" alt="" style="width : 100%; height : 100%">
+                    </div>
+                    <small class="name">Muhammed Koya</small>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% include 'store/footer.html'%}
+    <script src="{% static 'js/landingpage.js'%}"></script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacts</title>
+    {%include 'store/baselinks.html'%}
+    <link rel="stylesheet" href="{% static 'css/contacts.css'%}">
+    <link rel="stylesheet" href="{% static 'css/register.css'%}">
+</head> 
+<body>
+    <header>
+        <div class="row">
+            {% include 'store/navigation.html'%}
+        </div>
+    </header>
+    <section>
+        <div class="row contacts-section">
+            <div class="contacts-info-container">
+                <div class="contacts-info">
+                    <div class="simple-container">
+                        <h2>Get In Touch With Us</h2>
+                        <p class="contacts-description">Fillup the from and our team will get back to you<br>with in 24hrs</p>
+                        <div class="simple-info-container">
+                            <div class="info-group">
+                                <i class="fa-solid fa-phone"></i>
+                                <label>+91 9947077920</label>
+                            </div>
+                            <div class="info-group">
+                                <i class="fa-solid fa-message"></i>
+                                <label>dreamflowers639@gmail.com</label>
+                            </div>
+                            <div class="info-group">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <label>GPTC punalur, kollam</label>
+                            </div>
+                        </div>
+                        <div class="contacts-icon-container">
+                            <i class="fa-brands fa-linkedin"></i>
+                            <i class="fa-brands fa-twitter"></i>
+                            <i class="fa-brands fa-instagram"></i>
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="contacts-form-container">
+                    <div>
+                        <form method="post" class="contact-form">
+                            {% csrf_token %}
+                            <div class="block">
+                                <input type="text" placeholder="Name" name="name">
+                            </div>
+                            <div class="block">
+                                <input type="email" placeholder="email" name="email">
+                            </div>
+                            <div class="block">
+                                <textarea name="message"cols="30" rows="10"></textarea>
+                            </div>
+                            <div class="block">
+                                <input type="submit" value="Send Mail">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% include 'store/footer.html'%}
+</body>
+</html>

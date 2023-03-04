@@ -1,0 +1,72 @@
+.profile-flex{
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+}
+.profile-section-container{
+    margin-bottom: 30px;
+}
+.profile-section{
+    width: 40%;
+    border: 1px solid #ccc;
+}
+.form-section{
+    width : 57%;
+}
+#update{
+    border-radius: 5px;
+    padding: 0.4rem 1.2rem;
+}
+#align-right{
+    display : flex;
+    align-items: flex-end;
+}
+.profile-form{
+    width : 100%
+}
+.profile-section-container{
+    width: 100%;
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: #555;
+}
+.profile-section-image{
+    width: 200px;
+    height : 200px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.username{
+    font-size: 18px;
+}
+.profile-section-header{
+    font-size: 28px;
+    font-weight: 500;
+    padding : 30px 0px;
+}
+/*my orders styles*/
+.my-orders-product-info{
+    width : 100%;
+    
+}
+.my-orders-product-info h2{
+    margin-bottom: 25px;
+}
+.my-order-product-table{
+    font-size: 16px;
+    width : 100%;
+    padding : 10px;
+    border : 1px solid #ccc;
+    box-shadow : 5px 5px 5px #ccc;
+}
+.my-order-product-table td{
+    width : calc( 100% / 6);
+    padding : 10px;
+    border-bottom: 1px solid #ccc;
+}
+.my-order-product-table td img{
+    aspect-ratio: 1/1;
+    width : 80px;
+}

@@ -1,0 +1,32 @@
+
+<div class="nav">
+    <div class="brand"><span class="x">x</span>stores</div>
+    <div class="nav-container">
+        <a href="{% url 'Home-page'%}" class="nav-item">Home</a>
+        <a href="{% url 'Products-page'%}" class="nav-item">Products</a>
+        <a href="{% url 'Contacts-page'%}" class="nav-item">Contacts</a>
+        <a href="{% url 'Cart-page'%}" class="nav-item cart"><i class="fa-solid fa-cart-shopping"></i></a>
+        {% if request.user.is_authenticated %}
+            <a href="{% url 'Myprofile-page'%}" class="myprofile nav-item" style="overflow : hidden; margin-left : 45px"><img src={{request.user.customer.profile_pic.url}} alt="" style="width : 100%"></a>
+        {% endif %}
+    </div>
+    <script>
+        let user = "{{request.user}}";
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = getCookie('csrftoken');
+    </script>
+</div>

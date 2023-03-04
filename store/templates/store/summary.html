@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% include 'store/baselinks.html'%}
+    <link rel="stylesheet" href="{% static 'css/register.css'%}">
+</head>
+<body>
+    <header>
+        <div class="row">
+            {% include 'store/navigation.html'%}
+        </div>
+    </header>
+    <div class="row" style="height : 55vh">
+    {% if status %}
+        <div style="width : 100%; padding: 30px 10px; background-color : rgba(0, 128, 0, 0.387); color : green; border-radius: 5px;">
+            Payment was succesfull :) Thank you visit Again
+        </div>
+    {% else %}
+        <div style="width : 100%; padding: 30px 10px; background-color : rgba(255, 0, 0, 0.365); color : red; border-radius: 5px;">
+            Payment was Failed Try again :x
+        </div>
+    {% endif %}
+    </div>
+    {% include 'store/footer.html'%}
+</body>
+</html>
+ 

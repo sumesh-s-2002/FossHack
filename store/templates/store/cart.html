@@ -1,0 +1,54 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% include 'store/baselinks.html'%}
+    <link rel="stylesheet" href="{% static 'css/cart.css'%}">
+<body>
+    <header>
+        <div class="row">
+            {% include 'store/navigation.html'%}
+        </div>
+    </header>
+    <div class="cart-container">
+        <div class="total-container">
+            <div class="back-to-shopping">
+                <a href="{% url 'Products-page'%}" >&#129056; Continue shopping</a>
+            </div>
+            <div class="total-items">
+                <h5>items: <span class = "count">{{count}}</span></h5>
+                <h5>Total : <span class = "total">{{cart.grandTotal}}</span>$</h5>
+                <a href="{% url 'Checkout-page'%}">checkout</a>
+            </div>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <th></th>
+                    <th>Item</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </thead>
+                <tbody class = "table-body">
+                    {% for cartitem in cartitems %}
+                        <tr>
+                            <td><div class = "cart-image"><img src={{cartitem.product.product_image.url}} alt="oops!"></div></td>
+                            <td>{{cartitem.product.title}}</td>
+                            <td>${{cartitem.product.price}}</td>
+                            <td><input type="number" class="qty" data-cartid = {{cartitem.id}} value ={{cartitem.quantity}}></td>
+                            <td>${{cartitem.total}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% include 'store/footer.html'%}
+    <script src="{%static 'js/updatecart.js'%}"></script>
+</body>
+</html>

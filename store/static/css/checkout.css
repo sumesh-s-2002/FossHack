@@ -1,0 +1,125 @@
+.shipping-info-container{
+    box-shadow: 5px 5px 5px 0px #ccc;
+    border : 1px solid #ccc;
+    border-radius: 5px;
+    width: 49%;
+    padding : 15px;
+    display: flex;
+    flex-direction: column;
+}
+input[type = "text"], input[type = "email"]{
+    height: 30px;
+    width: calc(100% - 45px);
+    border-radius: 5px;
+    border: none;
+    border : 1px solid #ccc;
+    padding-left: 8px;
+}
+input[type = "text"]:focus, input[type = "email"]:focus{
+    outline: none;
+    border : none;
+    border: 1px solid blue;
+}
+.shipping-info-container h2{
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    padding : 15px 0px;
+    font-weight: 300;
+    font-size: 16px
+}
+.info{
+    display :flex;
+    align-items: center;
+    gap  :15px;
+    width : 100%;
+    padding-bottom: 10px;
+}
+.shipping-info-container .form{
+    padding-top: 10px;
+    border-bottom : 1px solid #ccc;
+    margin-bottom: 15px;
+}
+.row-input{
+    display : flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+.shipping-info a{
+    background-color: #FC2D00;
+    padding  : 0.5em 1.2em; 
+    font-size: 14px;
+    text-decoration: none;
+    color: white;
+    border-radius: 3px;
+}
+.checkout-container{
+    width  : 85vw;
+    margin: 30px auto;
+    display : flex;
+    justify-content: space-between;
+}
+/*design for Order summary*/
+.order-summary{
+    border : 1px solid #ccc;
+    width: 49%;
+    box-shadow: 5px 5px 5px 0px #ccc;
+    padding : 10px;
+    display : flex;
+    border-radius:5px;
+    flex-direction: column;
+}
+.header{
+    padding : 0px 0px 20px 5px ;
+    border-bottom: 1px solid #ccc;
+    display : flex;
+    align-items: center;
+}
+.header a{
+    border: 1px solid #FC2D00;
+    padding : .5em 1.2em;
+    color: #FC2D00;
+    text-decoration: none;
+    border-radius: 3px;
+    font-size: 14px;
+}
+.product-info h2{
+    padding-bottom: 15px;
+    font-size: 20px;
+    margin-bottom: 0px;
+}
+.product-table{
+    border-top : 1px solid #ccc;
+    width: 95%;
+    margin  : 0px auto;
+}
+.product-table tr td{
+    border-bottom: 1px solid #ccc;
+    padding : 15px 3px;
+    text-align: left;
+    font-size: 14px;
+}
+.product-image{
+    width: 70px;
+    background-color: lightgray;
+    aspect-ratio: 16/12;
+}
+.total-items{
+    display : flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px 0px;
+    gap: 10px;
+}
+.total-items small{
+    font-size: 14px;
+    font-weight: 540;
+}
+@media only screen and (max-width : 1000px){
+    .checkout-container{
+        flex-direction: column;
+        gap : 30px;
+    }
+    .order-summary,.shipping-info-container{
+        width: 100%;
+    }
+}

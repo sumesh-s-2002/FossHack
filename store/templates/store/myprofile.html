@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Myprofile</title>
+    {% include 'store/baselinks.html'%}
+    <link rel="stylesheet" href="{%static 'css/myprofile.css'%}">
+    <link rel="stylesheet" href="{%static 'css/register.css'%}">
+
+</head>
+<body>
+    <header>
+        <div class="row">
+            {% include 'store/navigation.html'%}
+        </div>
+    </header>
+    <section class="profile-section-container">
+        <div class="row profile-flex">
+            <div class="profile-section">
+                <div class="profile-section-container">
+                    <div class="profile-section-header">
+                        Hellow {{request.user}}
+                    </div>
+                    <div class="profile-section-image">
+                        <img src={{customer.profile_pic.url}} alt="" style="width : 100%">
+                    </div>
+                    <small class="username">{{request.user}}</small>
+                </div>
+            </div>
+            <div class="form-section">
+                <form class="post" method="post" class="profile-form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="block">
+                        <label for="firstname">firstname</label>
+                        {{form1.first_name}}
+                    </div>
+                    <div class="block">
+                        <label for="lasttname">lastname</label>
+                        {{form1.last_name}}
+                    </div>
+                    <div class="block">
+                        <label for="email">email</label>
+                        {{form1.email}}
+                    </div>
+                    <div class="block">
+                        <label for="phone">phone</label>
+                        {{form2.phone}}
+                    </div>
+                    <div class="block">
+                        {{form2.profile_pic}}
+                    </div>
+                    <div class="block exclusive" id="align-right">
+                        <input type="submit" value="update" id="update"> 
+                    </div>
+                    {% for error in form1.erros%}
+                        {{error}}
+                    {% endfor %}
+                    {% for error in form2.erros%}
+                        {{error}}
+                    {% endfor %}
+                </form>
+            </div> 
+        </div>
+    </section>
+    <!-----myorders-------->
+    <section class="my-orders" style="margin-top : 60px">
+        <div class="row">
+            <div class="my-orders-product-info">
+                <h2>My orders</h2>
+                <table class="my-order-product-table">
+                    {% for order in orderitems%}
+                        {% for orderitem in order%}
+                            <tr>
+                                <td><img src={{orderitem.product.product_image.url}} alt="" style="width : 50%; height : 50%"></td>
+                                <td>{{orderitem.product.title}}</td>
+                                <td>x{{orderitem.quantity}}</td>
+                                <td>{{orderitem.order.placed_at|date:'d-m-Y'}}</td>
+                                <td>{{orderitem.order.order_status}}</td>
+                                <td>${{orderitem.total}}</td>
+                            </tr>
+                        {% endfor %}
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </section>
+    {% include 'store/footer.html'%}
+</body>
+</html>

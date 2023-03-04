@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% include 'store/baselinks.html'%}
+    <link rel="stylesheet" href="{% static 'css/register.css'%}">
+</head>
+<body style="display : flex; flex-direction : column; flex-grow : 1">
+    <header>
+        <div class="row">
+            {% include 'store/navigation.html'%}
+        </div>
+    </header>
+    <div class="row">
+        <div class="register-container">
+            <form method="post">
+                {% csrf_token %}
+                <div class="block" >
+                    {% if form.errors%}
+                        {% for error in form.errors%}
+                            <div style="width : 100%; color : red; background-color : rgba(255, 27, 27, 0.22); border-radius : 5px; padding : 8px 0px 8px 10px; margin-bottom: 5px;">
+                                {{error}}
+                            </div>
+                        {% endfor %}
+                    {% endif%}
+                </div>
+                <div class="block">
+                    <h2 class="form-title">Register</h2>
+                </div>
+                <div class="block">
+                    <label for="username">username</label>
+                    {{form.username}}
+                </div>
+                <div class="block">
+                    <label for="firstname">firstname</label>
+                    {{form.first_name}}
+                    
+                </div>
+                <div class="block">
+                    <label for="lastname">Lastname</label>
+                    {{form.last_name}}
+                </div>
+                <div class="block">
+                    <label for="email">Email</label>
+                    {{form.email}}
+                </div>
+                <div class="block">
+                    <label for="password">Password</label>
+                    {{form.password1}}
+                </div>
+                <div class="block">
+                    <label for="confirm-password">confirm Password</label>
+                    {{form.password2}}
+                </div>
+                <div class="block exclusive">
+                    <input type="submit" value="Submit"> 
+                </div>
+            </form>
+        </div>
+    </div>
+    {% include 'store/footer.html'%}
+</body>
+</html>

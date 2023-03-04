@@ -1,0 +1,58 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% include 'store/baselinks.html'%}
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+</head>
+<body style="display: flex; flex-direction: column; flex-grow: 1;">
+    <header>
+        <div class="row">
+            {% include 'store/navigation.html'%}
+        </div>
+    </header>
+    <div class="row">
+        <div class="product-details-all-container">
+            <div class="product-details-image-container">
+                <div class="product-details-big-image">
+                    <img src={{product.product_image.url}} alt="" class="bigimage" style="width : 100%; height : 100%">
+                </div>
+                <div class="product-details-small-image-container">
+                    {% for image in images %}
+                        <div class="products-details-small-image" style="cursor:pointer">
+                            <img src={{image}} alt="" class="image" style="width : 100%; height : 100%">
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="product-details-container">
+                <h2 class="product-details-header" style="margin: 0px;">{{product.title}}</h2>
+                <p class="prodduct-details-price" style="margin: 0px;">${{product.price}}</p>
+                <div class="product-details-quantity-container">
+                    <input type="number" value="1" class="details-quanity">
+                    <button class="btn solid js" data-id = {{id}} data-action= "add" style="border: none; cursor:pointer;">Cart</button>
+                </div>
+                <div class="product-details">
+                    <h3 style="margin: 10px 0px;">product details</h3>
+                    <p>{{product.description}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const element = document.querySelector(".product-details-small-image-container"),
+            bigimage = document.querySelector(".bigimage")
+        element.addEventListener("click",(e)=>{
+            if(e.target.classList.contains("image")){
+                bigimage.src = e.target.src;
+            }
+        })
+    </script>
+    <script src="{% static 'js/cart.js'%}"></script>
+    {% include 'store/footer.html'%}
+</body>
+</html>
